@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import LandingPage from './pages/landing';
 import LoginPage from './pages/login';
-import { AppBasePath } from './misc/misc';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './styles/index.css';
 
-const router = createBrowserRouter([
+/**
+ * Use HashRouter instead of BrowserRouter because of GitHub Pages
+ */
+const router = createHashRouter([
 	{
 		path: '/',
 		element: <App />,
@@ -23,10 +25,7 @@ const router = createBrowserRouter([
 			}
 		],
 	}
-],
-{
-	basename: AppBasePath
-});
+]);
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
