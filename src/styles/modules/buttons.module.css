@@ -1,0 +1,35 @@
+.login > button
+{
+    background: var(--green-primary);
+    color: white;
+    padding: 9px 30px;
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background-color 0.125s linear;
+}
+
+.login > button:hover, .login:focus > button
+{
+    background: var(--green-secondary);
+}
+
+.login.large > button
+{
+    padding: 11px 40px;
+    font-size: 18px;
+}
+
+@media (max-width: 800px)
+{
+    .login > button
+    {
+        padding: 8px 24px;
+        font-size: 14px;
+    }
+    .login.large > button
+    {
+        padding: 10px 32px;
+        font-size: 16px;
+    }
+}

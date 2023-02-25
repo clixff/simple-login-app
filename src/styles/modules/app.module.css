@@ -1,0 +1,31 @@
+#wrapper
+{
+    display: flex;
+    flex-direction: column;
+    --width: 100vw;
+    width: var(--width);
+    min-width: var(--width);
+    max-width: var(--width);
+    --height: 100vh;
+    height: var(--height);
+    min-height: var(--height);
+    max-height: var(--height);
+    overflow: hidden;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#content
+{
+    width: inherit;
+    min-width: inherit;
+    height: var(--app-content-height);
+    background: var(--app-background);
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-top: var(--navbar-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.2s linear;
+}

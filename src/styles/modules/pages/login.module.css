@@ -1,0 +1,233 @@
+#wrapper
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#card
+{
+    /* border: 1px solid rgb(128, 128, 128, 0.1); */
+    padding: 40px 40px;
+    margin-top: 50px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px 0px rgb(0, 0, 0, 0.1);
+    background: var(--login-card-background);
+    margin-bottom: 50px;
+}
+
+.login-component > h3
+{
+    font-weight: 700;
+    font-size: 22px;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.2s linear;
+}
+
+.login-component
+{
+    width: 270px;
+}
+
+.form
+{
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group
+{
+    margin: 0;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    border: 0;
+    padding: 0;
+    min-width: 100px;
+}
+
+.form-group > label
+{
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: var(--text-color-secondary);
+    transition: color 0.2s linear;
+    text-transform: uppercase;
+}
+
+.form-group > input
+{
+    --border-color: transparent;
+    padding: 10px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s linear;
+    background: var(--input-background);
+    font-family: unset;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-color);
+    transition: border-color 0.2s linear, background-color 0.2s linear, color 0.2s linear;
+}
+
+.form-group > input:focus
+{
+    --border-color: var(--blue-primary);
+}
+.form > button.submit
+{
+    background: var(--green-primary);
+    color: white;
+    font-family: unset;
+    padding: 10px 0px;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background-color 0.1s linear, opacity 0.2s linear;
+}
+
+.form > button.submit:hover, .form > button.submit:focus
+{
+    background: var(--green-secondary);
+}
+
+.form-error > input
+{
+    --border-color: var(--red-primary) !important;
+}
+
+.form-group > .error
+{
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--red-primary);
+    margin-top: 10px;
+    transition: color 0.2s linear;
+}
+
+#card-change-mode
+{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+#card-change-mode > span
+{
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-color-secondary);
+    transition: color 0.2s linear;
+}
+
+#card-change-mode > button
+{
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--blue-primary);
+    transition: color 0.1s linear;
+    cursor: pointer;
+    font-family: unset;
+}
+
+#card-change-mode > button:hover, #card-change-mode > button:focus
+{
+    color: var(--blue-secondary);
+}
+
+.login-error
+{
+    background: rgb(214, 49, 49);
+    color: white;
+    padding: 15px 0px;
+    /* width: 100%; */
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+@keyframes cardFadeIn
+{
+    0%
+    {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100%
+    {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes loginErrorFadeIn
+{
+    0%
+    {
+        opacity: 0;
+    }
+    100%
+    {
+        opacity: 1;
+    }
+}
+
+@supports (animation: cardFadeIn)
+{
+    #card
+    {
+        opacity: 0;
+        animation: cardFadeIn 0.4s ease-in-out forwards;
+    }
+    .login-error
+    {
+        opacity: 0;
+        animation: loginErrorFadeIn 0.3s ease-in-out forwards;
+    }
+}
+
+@media (max-width: 768px)
+{
+    #card
+    {
+        margin-top: 25px;
+        max-width: var(--app-width);
+        width: var(--app-width);
+        padding-left: 0px;
+        padding-right: 0px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+    }
+    .login-component, .login-error
+    {
+        width: calc(100% - 40px);
+    }
+    .form
+    {
+         width: 100%;
+    }
+}
