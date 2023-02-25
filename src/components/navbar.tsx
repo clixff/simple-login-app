@@ -13,8 +13,6 @@ function Logo(): JSX.Element
     </Link>);
 }
 
-
-
 function ColorThemeButton()
 {
     const appContext = useContext(AppContext);

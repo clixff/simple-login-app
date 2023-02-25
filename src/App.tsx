@@ -1,11 +1,10 @@
-import React from 'react'
-import { EColorTheme, AppContext } from './misc/types'
+import React from 'react';
+import { EColorTheme, AppContext } from './misc/types';
 import { GetSavedTheme } from './misc/misc';
 import { Outlet } from 'react-router-dom'
 import { NavBar } from './components/navbar';
-import styles from './styles/modules/app.module.css'
 import { SaveTheme } from './misc/misc';
-
+import styles from './styles/modules/app.module.css';
 
 type AppProps = Record<string, unknown>;
 

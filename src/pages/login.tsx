@@ -46,7 +46,7 @@ function FormGroup(props: IFormGroupProps): JSX.Element
 
 interface ILoginComponentProps
 {
-    onFormSumbit: (event: React.FormEvent<HTMLFormElement>) => void;
+    onFormSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     errorsData: Record<string, string>;
     buttonDisabled: boolean;
 }
@@ -57,7 +57,7 @@ function SignInComponent(props: ILoginComponentProps): JSX.Element
         <h3>
             Sign in
         </h3>
-        <form className={styles['form']} onSubmit={props.onFormSumbit} noValidate={true} autoComplete={'off'}>
+        <form className={styles['form']} onSubmit={props.onFormSubmit} noValidate={true} autoComplete={'off'}>
             <FormGroup label="Email" type="email" id="email" autoFocus={true} error={props.errorsData['email']}  />
             <FormGroup label="Password" type="password" id="password" error={props.errorsData['password']}  />
             <button className={styles['submit']} type="submit" disabled={props.buttonDisabled}>Sign in</button>
@@ -71,7 +71,7 @@ function SignUpComponent(props: ILoginComponentProps): JSX.Element
         <h3>
             Sign up
         </h3>
-        <form className={styles['form']} onSubmit={props.onFormSumbit} noValidate={true} autoComplete={'off'} >
+        <form className={styles['form']} onSubmit={props.onFormSubmit} noValidate={true} autoComplete={'off'} >
             <FormGroup label="Username" type="text" id="username" autoFocus={true} error={props.errorsData['username']}  />
             <FormGroup label="Email" type="email" id="email" error={props.errorsData['email']}  />
             <FormGroup label="Password" type="password" id="password" error={props.errorsData['password']}  />
@@ -127,17 +127,18 @@ function LoginCard()
             /** Set loading state */
             setServerResponse({ success: false, message: '', loading: true });
 
-            /** Data we get from the fake fetch is already in JSON (object) format */
+            /** Data we get from the fake fetch is already parsed */
             const response = await fakeFetch(URL, {
                 method: 'POST',
                 body: formData
             }, expectedMessage, 2000) as unknown as IServerResponseData;
 
-            if (!response || typeof response.ok !== 'boolean')
+            if (!response || typeof response !== 'object' || typeof response['ok'] !== 'boolean')
             {
                 throw new Error('No response from server');
             }
 
+            /** Update error message after server response, and disable loading state */
             setServerResponse({
                 loading: false,
                 success: response.ok || false,
@@ -155,7 +156,7 @@ function LoginCard()
         }
     }
     
-    function onLoginFormSumbit(event: React.FormEvent<HTMLFormElement>)
+    function onLoginFormSubmit(event: React.FormEvent<HTMLFormElement>)
     {
         event.preventDefault();
 
@@ -217,22 +218,18 @@ function LoginCard()
             }
         }
 
+        setErrors(errors);
+
         if (Object.keys(errors).length > 0)
         {
-            setErrors(errors);
             return;
         }
-
-        /** Clears errors after validation */
-        setErrors({});
-
-        console.log(JSON.stringify(formData), formData);
 
         sendLoginRequest(formData);
     }
 
     const loginComponentProps: ILoginComponentProps = {
-        onFormSumbit: onLoginFormSumbit,
+        onFormSubmit: onLoginFormSubmit,
         errorsData: errorsData,
         buttonDisabled: serverResponse.loading
     };
@@ -240,13 +237,13 @@ function LoginCard()
     const LoginComponent: React.FC<ILoginComponentProps> = isSignUp ? SignUpComponent : SignInComponent;
 
     const changeModeText = isSignUp ? 'Already have an account?' : 'Don\'t have an account?';
-    const changeModButton = isSignUp ? 'Sign in' : 'Sign up';
+    const changeModeButtonText = isSignUp ? 'Sign in' : 'Sign up';
 
-    const showServerMessage = serverResponse.loading == false && serverResponse.success == false && !!serverResponse.message.length;
+    const shouldShowServerMessage = serverResponse.loading == false && serverResponse.success == false && !!serverResponse.message.length;
 
     return (<div id={styles['card']}>
         {
-            showServerMessage ? 
+            shouldShowServerMessage ? 
             (
                 <LoginErrorMessage message={serverResponse.message} />
             ) : null
@@ -254,7 +251,7 @@ function LoginCard()
         <LoginComponent {...loginComponentProps} />
         <div id={styles['card-change-mode']}>
             <span> { changeModeText } </span>
-            <button onClick={onChangeModeClick}> { changeModButton } </button>
+            <button onClick={onChangeModeClick}> { changeModeButtonText } </button>
         </div>
     </div>);
 }

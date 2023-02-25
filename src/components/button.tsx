@@ -9,7 +9,7 @@ interface ILoginButtonProps
 
 export function LoginButton(props: ILoginButtonProps): JSX.Element
 {
-    const classNames = [styles['login']];
+    const classNames = [ styles['login'] ];
     if (props.large)
     {
         classNames.push(styles['large']);

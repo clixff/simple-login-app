@@ -23,7 +23,6 @@ export function GetSavedTheme(): EColorTheme
         savedTheme = savedTheme && savedTheme === EColorTheme.Light ? savedTheme : EColorTheme.Dark;
     }
 
-
     return savedTheme as EColorTheme;
 }
 
