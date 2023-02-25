@@ -43,6 +43,7 @@ body, html
 	padding: 0;
 	color: var(--text-color);
 	overflow: hidden;
+	background: var(--app-background);
 }
 
 button

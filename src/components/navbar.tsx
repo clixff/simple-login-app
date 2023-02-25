@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 import { LoginButton } from './button';
 import { AppContext, EColorTheme } from '../misc/types';
 import { MoonIcon } from './icons';
-import { AppBasePath } from '../misc/misc';
 
 function Logo(): JSX.Element
 {
-    return (<Link to={`${AppBasePath}`} id={styles['logo']}>
+    return (<Link to="/" id={styles['logo']}>
         Simple App
     </Link>);
 }

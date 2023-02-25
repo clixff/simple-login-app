@@ -4,7 +4,12 @@ export const AppBasePath = `/simple-login-app/`;
 
 export function GetSavedTheme(): EColorTheme
 {
-    let savedTheme = localStorage.getItem('colorTheme');
+    if (typeof window === `undefined` || typeof window.localStorage === `undefined`)
+    {
+        return EColorTheme.Dark;
+    }
+
+    let savedTheme = window.localStorage.getItem('colorTheme');
 
     if (!savedTheme)
     {
@@ -28,7 +33,12 @@ export function GetSavedTheme(): EColorTheme
 
 export function SaveTheme(theme: EColorTheme): void
 {
-    localStorage.setItem('colorTheme', theme);
+    if (typeof window === `undefined` || typeof window.localStorage === `undefined`)
+    {
+        return;
+    }
+
+    window.localStorage.setItem('colorTheme', theme);
 }
 
 export function IsEmailValid(string: string): boolean

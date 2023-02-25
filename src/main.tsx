@@ -14,16 +14,19 @@ const router = createBrowserRouter([
 		children:
 		[
 			{
-				path: `${AppBasePath}`,
+				path: `/`,
 				element: <LandingPage />
 			},
 			{
-				path: `${AppBasePath}login`,
+				path: `/login`,
 				element: <LoginPage />
 			}
 		],
 	}
-]);
+],
+{
+	basename: AppBasePath
+});
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
