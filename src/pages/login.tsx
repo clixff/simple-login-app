@@ -60,9 +60,9 @@ function SignInComponent(props: ILoginComponentProps): JSX.Element {
 
 function SignUpComponent(props: ILoginComponentProps): JSX.Element {
     return (<div className={[styles['login-component'], styles['sign-up']].join(' ')}>
-        <h3>
+        <h1>
             Sign up
-        </h3>
+        </h1>
         <form className={styles['form']} onSubmit={props.onFormSubmit} noValidate={true} >
             <FormGroup label="Username" type="text" id="name" autoFocus={true} error={props.errorsData['username']} autoComplete='on'  />
             <FormGroup label="Email" type="email" id="email" error={props.errorsData['email']} autoComplete='username' />
