@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from '../styles/modules/buttons.module.css';
 
-interface ILoginButtonProps
-{
+interface ILoginButtonProps {
     large?: boolean;
 }
 
-export function LoginButton(props: ILoginButtonProps): JSX.Element
-{
+export function LoginButton(props: ILoginButtonProps): JSX.Element {
     const classNames = [ styles['login'] ];
-    if (props.large)
-    {
+    if (props.large) {
         classNames.push(styles['large']);
     }
 

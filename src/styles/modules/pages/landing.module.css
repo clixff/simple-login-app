@@ -1,5 +1,4 @@
-#wrapper
-{
+#wrapper {
     width: 100vw;
     height: inherit;
     display: flex;
@@ -10,8 +9,7 @@
     overflow: hidden;
 }
 
-#content
-{
+#content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,8 +18,7 @@
     width: var(--app-width);
 }
 
-#info
-{
+#info {
     width: 600px;
     text-align: center;
     display: flex;
@@ -32,24 +29,21 @@
     transition: color 0.2s linear;
 }
 
-#title
-{
+#title {
     margin: 0;
     font-weight: 700;
     font-size: 35px;
     color: var(--text-color);
 }
 
-#desc
-{
+#desc {
     color: var(--text-color-secondary);
     font-weight: 600;
     font-size: 18px;
     margin: 10px 0;
 }
 
-#gradient
-{
+#gradient {
     position: absolute;
     left: 0;
     right: 0;
@@ -64,97 +58,75 @@
     background: linear-gradient(-180deg, rgb(59, 133, 230), rgb(209, 39, 209));
 }
 
-html[color-theme="dark"] #gradient
-{
+html[color-theme="dark"] #gradient {
     --color: rgb(77, 142, 228, 0.4);
 }
 
-@keyframes landingFadeIn
-{
-    0%
-    {
+@keyframes landingFadeIn {
+    0% {
         opacity: 0;
     }
-    100%
-    {
+    100% {
         opacity: 1;
     }
 }
 
-@keyframes infoFadeIn
-{
-    0%
-    {
+@keyframes infoFadeIn {
+    0% {
         opacity: 0;
         transform: translateY(-50px);
     }
-    100%
-    {
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-@keyframes gradientFadeIn
-{
-    0%
-    {
+@keyframes gradientFadeIn {
+    0% {
         opacity: 0;
     }
-    100%
-    {
+    100% {
         opacity: 1;
     }
 }
 
-@supports (animation: landingFadeIn) 
-{
-    #info
-    {
+@supports (animation: landingFadeIn)  {
+    #info {
         opacity: 0;
         animation: infoFadeIn 500ms ease-in-out forwards;
     }
-    #login-wrapper, #desc, #title
-    {
+    #login-wrapper, #desc, #title {
         opacity: 0;
         animation: landingFadeIn 500ms ease-in-out forwards;
     }
-    #desc
-    {
+    #desc {
         animation-delay: 400ms;
     }
-    #login-wrapper
-    {
+    #login-wrapper {
         animation-delay: 800ms;
     }
-    #title
-    {
+    #title {
         animation-duration: 300ms;
     }
-    #gradient
-    {
+    #gradient {
         opacity: 0;
         animation: gradientFadeIn 1200ms ease-in-out forwards;
     }
 }
 
-@media (max-width: 800px)
-{
-    #info
-    {
+@media (max-width: 800px) {
+    #info {
         width: inherit;
     }
-    #title
-    {
+    #title {
         font-size: 28px;
     }
-    #desc
-    {
+    #desc {
         font-size: 15px;
         padding: 0px 20px;
     }
-    #gradient
-    {
+    #gradient {
         --size: 100vw;
         /* bottom: 0px; */
     }

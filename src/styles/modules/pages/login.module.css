@@ -1,11 +1,9 @@
-#wrapper
-{
+#wrapper {
     display: flex;
     flex-direction: column;
 }
 
-#card
-{
+#card {
     /* border: 1px solid rgb(128, 128, 128, 0.1); */
     padding: 40px 40px;
     margin-top: 50px;
@@ -15,8 +13,7 @@
     margin-bottom: 50px;
 }
 
-.login-component > h3
-{
+.login-component > h3 {
     font-weight: 700;
     font-size: 22px;
     margin: 0;
@@ -28,21 +25,18 @@
     transition: color 0.2s linear;
 }
 
-.login-component
-{
+.login-component {
     width: 270px;
 }
 
-.form
-{
+.form {
     width: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.form-group
-{
+.form-group {
     margin: 0;
     margin-bottom: 12px;
     display: flex;
@@ -53,8 +47,7 @@
     min-width: 100px;
 }
 
-.form-group > label
-{
+.form-group > label {
     font-weight: 700;
     font-size: 12px;
     margin-bottom: 8px;
@@ -63,8 +56,7 @@
     text-transform: uppercase;
 }
 
-.form-group > input
-{
+.form-group > input {
     --border-color: transparent;
     padding: 10px 15px;
     border: 2px solid var(--border-color);
@@ -79,12 +71,10 @@
     transition: border-color 0.2s linear, background-color 0.2s linear, color 0.2s linear;
 }
 
-.form-group > input:focus
-{
+.form-group > input:focus {
     --border-color: var(--blue-primary);
 }
-.form > button.submit
-{
+.form > button.submit {
     background: var(--green-primary);
     color: white;
     font-family: unset;
@@ -97,18 +87,15 @@
     transition: background-color 0.1s linear, opacity 0.2s linear;
 }
 
-.form > button.submit:hover, .form > button.submit:focus
-{
+.form > button.submit:hover, .form > button.submit:focus {
     background: var(--green-secondary);
 }
 
-.form-error > input
-{
+.form-error > input {
     --border-color: var(--red-primary) !important;
 }
 
-.form-group > .error
-{
+.form-group > .error {
     font-weight: 600;
     font-size: 14px;
     color: var(--red-primary);
@@ -116,8 +103,7 @@
     transition: color 0.2s linear;
 }
 
-#card-change-mode
-{
+#card-change-mode {
     margin-top: 30px;
     display: flex;
     flex-direction: row;
@@ -127,16 +113,14 @@
     flex-wrap: wrap;
 }
 
-#card-change-mode > span
-{
+#card-change-mode > span {
     font-weight: 600;
     font-size: 14px;
     color: var(--text-color-secondary);
     transition: color 0.2s linear;
 }
 
-#card-change-mode > button
-{
+#card-change-mode > button {
     background: transparent;
     border: 0;
     outline: none;
@@ -148,13 +132,11 @@
     font-family: unset;
 }
 
-#card-change-mode > button:hover, #card-change-mode > button:focus
-{
+#card-change-mode > button:hover, #card-change-mode > button:focus {
     color: var(--blue-secondary);
 }
 
-.login-error
-{
+.login-error {
     background: rgb(214, 49, 49);
     color: white;
     padding: 15px 0px;
@@ -172,50 +154,39 @@
     justify-content: center;
 }
 
-@keyframes cardFadeIn
-{
-    0%
-    {
+@keyframes cardFadeIn {
+    0% {
         opacity: 0;
         transform: translateY(-20px);
     }
-    100%
-    {
+    100% {
         opacity: 1;
         transform: translateY(0px);
     }
 }
 
-@keyframes loginErrorFadeIn
-{
-    0%
-    {
+@keyframes loginErrorFadeIn {
+    0% {
         opacity: 0;
     }
-    100%
-    {
+    100% {
         opacity: 1;
     }
 }
 
-@supports (animation: cardFadeIn)
-{
-    #card
-    {
+@supports (animation: cardFadeIn) {
+    #card {
         opacity: 0;
         animation: cardFadeIn 0.4s ease-in-out forwards;
     }
-    .login-error
-    {
+    .login-error {
         opacity: 0;
         animation: loginErrorFadeIn 0.3s ease-in-out forwards;
     }
 }
 
-@media (max-width: 768px)
-{
-    #card
-    {
+@media (max-width: 768px) {
+    #card {
         margin-top: 25px;
         max-width: var(--app-width);
         width: var(--app-width);
@@ -227,12 +198,10 @@
         flex-direction: column;
         max-width: 400px;
     }
-    .login-component, .login-error
-    {
+    .login-component, .login-error {
         width: calc(100% - 40px);
     }
-    .form
-    {
+    .form {
          width: 100%;
     }
 }

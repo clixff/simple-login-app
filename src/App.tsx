@@ -8,15 +8,12 @@ import styles from './styles/modules/app.module.css';
 
 type AppProps = Record<string, unknown>;
 
-interface IAppState
-{
+interface IAppState {
     theme: EColorTheme;
 }
 
-export default class App extends React.Component<AppProps, IAppState>
-{
-    constructor(props: AppProps)
-    {
+export default class App extends React.Component<AppProps, IAppState> {
+    constructor(props: AppProps) {
         super(props);
         this.state = {
             theme: GetSavedTheme()
@@ -26,29 +23,24 @@ export default class App extends React.Component<AppProps, IAppState>
         this.onThemeChanged = this.onThemeChanged.bind(this);
     }
 
-    componentDidMount(): void 
-    {
+    componentDidMount(): void  {
         this.onThemeChanged();
     }
 
-    setTheme(newTheme: EColorTheme)
-    {
+    setTheme(newTheme: EColorTheme) {
         this.setState({
             theme: newTheme
-        }, () =>
-        {
+        }, () => {
             SaveTheme(newTheme);
             this.onThemeChanged();
         });
     }
 
-    onThemeChanged()
-    {
+    onThemeChanged() {
         document.documentElement.setAttribute('color-theme', `${this.state.theme}`)
     }
 
-    render()
-    {
+    render() {
         return (
             <AppContext.Provider value={{
                 colorTheme: this.state.theme,

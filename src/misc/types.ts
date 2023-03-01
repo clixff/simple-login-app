@@ -1,13 +1,11 @@
 import React from 'react';
 
-export enum EColorTheme
-{
+export enum EColorTheme {
     Light = 'light',
     Dark = 'dark'
 }
 
-export interface IAppContext
-{
+export interface IAppContext {
     colorTheme: EColorTheme;
     setColorTheme: (colorTheme: EColorTheme) => void;
 }

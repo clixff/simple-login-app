@@ -1,5 +1,4 @@
-#wrapper
-{
+#wrapper {
     display: flex;
     flex-direction: column;
     --width: 100vw;
@@ -15,8 +14,7 @@
     justify-content: flex-start;
 }
 
-#content
-{
+#content {
     width: inherit;
     min-width: inherit;
     height: var(--app-content-height);

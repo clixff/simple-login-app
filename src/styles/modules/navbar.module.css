@@ -1,5 +1,4 @@
-#wrapper
-{
+#wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,8 +16,7 @@
     z-index: 999;
 }
 
-#content
-{
+#content {
     --width: var(--app-width);
     width: var(--width);
     height: 100%;
@@ -28,16 +26,14 @@
     align-items: center;
 }
 
-#content-left
-{
+#content-left {
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-#logo
-{
+#logo {
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -50,13 +46,11 @@
     transition: color 0.2s linear;
 }
 
-#logo:hover
-{
+#logo:hover {
     color: var(--text-color-secondary);
 }
 
-.color-theme-btn
-{
+.color-theme-btn {
     --size: 36px;
     width: var(--size);
     height: var(--size);
@@ -76,38 +70,31 @@
     background: var(--background);
 }
 
-html[color-theme="dark"] .color-theme-btn
-{
+html[color-theme="dark"] .color-theme-btn {
     --background:rgb(128, 128, 128, 0.25) !important;
     --background-hover: rgb(128, 128, 128, 0.15);
 }
 
-.color-theme-btn:hover, .color-theme-btn:focus
-{
+.color-theme-btn:hover, .color-theme-btn:focus {
     background: var(--background-hover);
 }
 
-.color-theme-btn > svg
-{
+.color-theme-btn > svg {
     --icon-size: 16px;
     fill: var(--text-color);
     transition: fill 0.2s linear;
 }
 
 
-@media (max-width: 800px)
-{
-    #logo
-    {
+@media (max-width: 800px) {
+    #logo {
         font-size: 16px;
     }
-    .color-theme-btn
-    {
+    .color-theme-btn {
         margin-left: 10px;
         --size: 32px;
     }
-    .color-theme-btn > svg
-    {
+    .color-theme-btn > svg {
         --icon-size: 12px;
     }
 }

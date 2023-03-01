@@ -9,8 +9,7 @@ import './styles/index.css';
 /**
  * Use HashRouter instead of BrowserRouter because of GitHub Pages
  */
-const router = createHashRouter([
-	{
+const router = createHashRouter([ {
 		path: '/',
 		element: <App />,
 		children:

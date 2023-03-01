@@ -1,8 +1,7 @@
 import { LoginButton } from '../components/button';
 import styles from '../styles/modules/pages/landing.module.css';
 
-export default function LandingPage(): JSX.Element
-{
+export default function LandingPage(): JSX.Element {
     return (<div id={styles['wrapper']}>
         <div id={styles['content']}>
             <div id={styles['info']}>

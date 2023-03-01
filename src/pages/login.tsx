@@ -2,20 +2,16 @@ import React, { useState } from 'react';
 import styles from '../styles/modules/pages/login.module.css';
 import { IsEmailValid, fakeFetch, getPasswordError, getUsernameValidationError } from '../misc/misc';
 
-interface ILoginMessageProps
-{
+interface ILoginMessageProps {
     message: string;
 }
 
-function LoginErrorMessage(props: ILoginMessageProps): JSX.Element
-{
-    return (<div className={styles['login-error']}>
-        {props.message}
+function LoginErrorMessage(props: ILoginMessageProps): JSX.Element {
+    return (<div className={styles['login-error']}> {props.message}
     </div>);
 }
 
-interface IFormGroupProps
-{
+interface IFormGroupProps {
     label: string;
     type: React.HTMLInputTypeAttribute;
     id: string;
@@ -25,8 +21,7 @@ interface IFormGroupProps
 }
 
 /** Uncontrolled form group component */
-function FormGroup(props: IFormGroupProps): JSX.Element
-{
+function FormGroup(props: IFormGroupProps): JSX.Element {
     const error = props.error;
 
     const placeholder = props.placeholder || '';
@@ -37,22 +32,19 @@ function FormGroup(props: IFormGroupProps): JSX.Element
         <label htmlFor={props.id}>{props.label}</label>
         
         <input type={props.type} id={props.id} name={props.id} placeholder={placeholder} autoFocus={autofocus} autoComplete='off' />
-
         {
             error && <span className={styles['error']}>{error}</span>
         }
     </fieldset>);
 }
 
-interface ILoginComponentProps
-{
+interface ILoginComponentProps {
     onFormSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     errorsData: Record<string, string>;
     buttonDisabled: boolean;
 }
 
-function SignInComponent(props: ILoginComponentProps): JSX.Element
-{
+function SignInComponent(props: ILoginComponentProps): JSX.Element {
     return (<div className={[styles['login-component'], styles['sign-in']].join(' ')}>
         <h3>
             Sign in
@@ -65,8 +57,7 @@ function SignInComponent(props: ILoginComponentProps): JSX.Element
     </div>);
 }
 
-function SignUpComponent(props: ILoginComponentProps): JSX.Element
-{
+function SignUpComponent(props: ILoginComponentProps): JSX.Element {
     return (<div className={[styles['login-component'], styles['sign-up']].join(' ')}>
         <h3>
             Sign up
@@ -81,31 +72,26 @@ function SignUpComponent(props: ILoginComponentProps): JSX.Element
 }
 
 /** Data we store in the component state */
-interface IServerResponseState
-{
+interface IServerResponseState {
     success: boolean;
     message: string;
     loading: boolean;
 }
 
 /** Data we get from server */
-interface IServerResponseData
-{
+interface IServerResponseData {
     ok: boolean;
     error?: string;
 }
 
-function LoginCard()
-{
+function LoginCard() {
     const [serverResponse, setServerResponse] = useState<IServerResponseState>({ success: false, message: '', loading: false });
     const [isSignUp, setIsSignUp] = useState(false);
     /** Stores error strings for fields */
     const [errorsData, setErrors] = useState<Record<string, string>>({});
 
-    const onChangeModeClick = () => 
-    {
-        if (serverResponse.loading)
-        {
+    const onChangeModeClick = () =>  {
+        if (serverResponse.loading) {
             return;
         }
 
@@ -117,10 +103,8 @@ function LoginCard()
         setServerResponse({ success: false, message: '', loading: false });
     }
 
-    async function sendLoginRequest(formData: FormData): Promise<void>
-    {
-        try
-        {
+    async function sendLoginRequest(formData: FormData): Promise<void> {
+        try {
             const URL = isSignUp ? '/api/auth/signup' : '/api/auth/signin';
             const expectedMessage = !isSignUp ? 'Incorrect email or password' : 'An unexpected error occurred';
 
@@ -133,8 +117,7 @@ function LoginCard()
                 body: formData
             }, expectedMessage, 2000) as unknown as IServerResponseData;
 
-            if (!response || typeof response !== 'object' || typeof response['ok'] !== 'boolean')
-            {
+            if (!response || typeof response !== 'object' || typeof response['ok'] !== 'boolean') {
                 throw new Error('No response from server');
             }
 
@@ -144,9 +127,7 @@ function LoginCard()
                 success: response.ok || false,
                 message: response.error || ''
             });
-        }
-        catch (error)
-        {
+        } catch (error) {
             console.error(error);
             setServerResponse({
                 loading: false,
@@ -156,13 +137,11 @@ function LoginCard()
         }
     }
     
-    function onLoginFormSubmit(event: React.FormEvent<HTMLFormElement>)
-    {
+    function onLoginFormSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         /** Already sent a request and waiting for response */
-        if (serverResponse.loading)
-        {
+        if (serverResponse.loading) {
             return;
         }
 
@@ -173,8 +152,7 @@ function LoginCard()
         const emailElement = formItems.namedItem('email') as HTMLInputElement;
         const passwordElement = formItems.namedItem('password') as HTMLInputElement;
 
-        if (!emailElement || !passwordElement)
-        {
+        if (!emailElement || !passwordElement) {
             return;
         }
 
@@ -187,23 +165,19 @@ function LoginCard()
 
         const errors: Record<string, string> = {};
 
-        if (!IsEmailValid(email))
-        {
+        if (!IsEmailValid(email)) {
             errors['email'] = 'Email is invalid.';
         }
 
         const pwdError = getPasswordError(password);
-        if (pwdError)
-        {
+        if (pwdError) {
             errors['password'] = pwdError;
         }
 
         /** Validate username input for sign-up */
-        if (isSignUp)
-        {
+        if (isSignUp) {
             const usernameElement = formItems.namedItem('username') as HTMLInputElement;
-            if (!usernameElement)
-            {
+            if (!usernameElement) {
                 return;
             }
 
@@ -212,16 +186,14 @@ function LoginCard()
             formData.append('username', usernameElement.value);
 
             const usernameError = getUsernameValidationError(username);
-            if (usernameError)
-            {
+            if (usernameError) {
                 errors['username'] = usernameError;
             }
         }
 
         setErrors(errors);
 
-        if (Object.keys(errors).length > 0)
-        {
+        if (Object.keys(errors).length > 0) {
             return;
         }
 
@@ -241,8 +213,7 @@ function LoginCard()
 
     const shouldShowServerMessage = serverResponse.loading == false && serverResponse.success == false && !!serverResponse.message.length;
 
-    return (<div id={styles['card']}>
-        {
+    return (<div id={styles['card']}> {
             shouldShowServerMessage ? 
             (
                 <LoginErrorMessage message={serverResponse.message} />
@@ -256,8 +227,7 @@ function LoginCard()
     </div>);
 }
 
-export default function LoginPage(): JSX.Element
-{
+export default function LoginPage(): JSX.Element {
     return (<div id={styles['wrapper']}>
         <LoginCard />
     </div>);

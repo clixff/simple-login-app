@@ -6,5 +6,8 @@
     "plugins": [
         "@typescript-eslint"
     ],
-    "root": true
+    "root": true,
+    "rules": {
+        "brace-style": ["warn", "1tbs"]
+    }
 }

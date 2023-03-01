@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
 
-:root 
-{
+:root  {
 	color-scheme: light;
 	font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Ubuntu, Helvetica Neue, sans-serif;
 	--app-width: 1200px;
@@ -23,8 +22,7 @@
 	--scroll-bar-color: rgb(120, 120, 120);
 }
 
-html[color-theme="dark"]
-{
+html[color-theme="dark"] {
 	color-scheme: dark;
 	--text-color: white;
 	--text-color-secondary: rgb(200, 200, 200);
@@ -37,8 +35,7 @@ html[color-theme="dark"]
 	--scroll-bar-color: rgb(50, 50, 50);
 }
 
-body, html 
-{
+body, html  {
 	margin: 0;
 	padding: 0;
 	color: var(--text-color);
@@ -46,8 +43,7 @@ body, html
 	background: var(--app-background);
 }
 
-button
-{
+button {
 	background: none;
 	border: none;	
 	cursor: pointer;
@@ -55,23 +51,20 @@ button
 	user-select: none;
 }
 
-button:disabled
-{
+button:disabled {
 	cursor: default;
 	pointer-events: none;
 	opacity: 0.2;
 }
 
-a, a:visited, a:active
-{
+a, a:visited, a:active {
 	color: inherit;
 	text-decoration: none;
 	cursor: pointer;
 }
 
 
-svg
-{
+svg {
 	--icon-size: 16px;
 	width: var(--icon-size);
 	height: var(--icon-size);
@@ -81,40 +74,32 @@ svg
 	max-height: var(--icon-size);
 }
 
-::-webkit-scrollbar 
-{
+::-webkit-scrollbar  {
     width: 11px;
 }
   
-::-webkit-scrollbar-track
-{
+::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 15px;
 }
   
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
     background: var(--scroll-bar-color);
     border-radius: 15px;
 }
 
-@media (max-width: 1300px)
-{
-	:root
-	{
+@media (max-width: 1300px) {
+	:root {
 		--app-width: 768px;
 	}
 }
 
-@media (max-width: 800px)
-{
-	:root
-	{
+@media (max-width: 800px) {
+	:root {
 		--app-width: calc(100vw - 40px);
 	}
 
-	::-webkit-scrollbar
-	{
+	::-webkit-scrollbar {
 		width: 6px;
 	}
 }
