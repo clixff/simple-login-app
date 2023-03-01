@@ -8,9 +8,9 @@ export default function LandingPage(): JSX.Element {
                 <h1 id={styles['title']}>
                     Simple App
                 </h1>
-                <h3 id={styles['desc']}>
+                <h2 id={styles['desc']}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                </h3>
+                </h2>
             </div>
             <div id={styles['login-wrapper']}>
                 <LoginButton large={true} />

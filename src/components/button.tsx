@@ -12,8 +12,6 @@ export function LoginButton(props: ILoginButtonProps): JSX.Element {
     }
 
     return (<Link to="/login" className={classNames.join(' ')}>
-        <button tabIndex={-1}>
             Sign in
-        </button>
     </Link>);
 }

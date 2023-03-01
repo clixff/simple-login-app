@@ -22,7 +22,8 @@ function ColorThemeButton() {
         }
     }
 
-    return (<button className={styles['color-theme-btn']} onClick={onClick}>
+    const themeAriaLabel = 'Change color theme';
+    return (<button className={styles['color-theme-btn']} onClick={onClick} aria-label={themeAriaLabel}>
         <MoonIcon />
     </button>);
 }

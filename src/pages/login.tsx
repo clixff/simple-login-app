@@ -17,6 +17,7 @@ interface IFormGroupProps {
     id: string;
     placeholder?: string;
     autoFocus?: boolean;
+    autoComplete: string;
     error?: string;
 }
 
@@ -27,15 +28,15 @@ function FormGroup(props: IFormGroupProps): JSX.Element {
     const placeholder = props.placeholder || '';
     const autofocus = props.autoFocus || false;
 
-    return (<fieldset className={[styles['form-group'], error ? styles['form-error'] : ''].join(' ')}>
+    return (<div className={[styles['form-group'], error ? styles['form-error'] : ''].join(' ')}>
 
         <label htmlFor={props.id}>{props.label}</label>
         
-        <input type={props.type} id={props.id} name={props.id} placeholder={placeholder} autoFocus={autofocus} autoComplete='off' />
+        <input type={props.type} id={props.id} name={props.id} placeholder={placeholder} autoFocus={autofocus} autoComplete={props.autoComplete} />
         {
-            error && <span className={styles['error']}>{error}</span>
+            error ? <span className={styles['error']}>{error}</span> : null
         }
-    </fieldset>);
+    </div>);
 }
 
 interface ILoginComponentProps {
@@ -46,12 +47,12 @@ interface ILoginComponentProps {
 
 function SignInComponent(props: ILoginComponentProps): JSX.Element {
     return (<div className={[styles['login-component'], styles['sign-in']].join(' ')}>
-        <h3>
+        <h1>
             Sign in
-        </h3>
-        <form className={styles['form']} onSubmit={props.onFormSubmit} noValidate={true} autoComplete={'off'}>
-            <FormGroup label="Email" type="email" id="email" autoFocus={true} error={props.errorsData['email']}  />
-            <FormGroup label="Password" type="password" id="password" error={props.errorsData['password']}  />
+        </h1>
+        <form className={styles['form']} onSubmit={props.onFormSubmit} noValidate={true}>
+            <FormGroup label="Email" type="email" id="email" autoFocus={true} error={props.errorsData['email']} autoComplete='username' />
+            <FormGroup label="Password" type="password" id="password" error={props.errorsData['password']} autoComplete='current-password'  />
             <button className={styles['submit']} type="submit" disabled={props.buttonDisabled}>Sign in</button>
         </form>
     </div>);
@@ -62,10 +63,10 @@ function SignUpComponent(props: ILoginComponentProps): JSX.Element {
         <h3>
             Sign up
         </h3>
-        <form className={styles['form']} onSubmit={props.onFormSubmit} noValidate={true} autoComplete={'off'} >
-            <FormGroup label="Username" type="text" id="username" autoFocus={true} error={props.errorsData['username']}  />
-            <FormGroup label="Email" type="email" id="email" error={props.errorsData['email']}  />
-            <FormGroup label="Password" type="password" id="password" error={props.errorsData['password']}  />
+        <form className={styles['form']} onSubmit={props.onFormSubmit} noValidate={true} >
+            <FormGroup label="Username" type="text" id="name" autoFocus={true} error={props.errorsData['username']} autoComplete='on'  />
+            <FormGroup label="Email" type="email" id="email" error={props.errorsData['email']} autoComplete='username' />
+            <FormGroup label="Password" type="password" id="password" error={props.errorsData['password']} autoComplete='new-password'  />
             <button className={styles['submit']} type="submit" disabled={props.buttonDisabled}>Sign up</button>
         </form>
     </div>);
@@ -176,7 +177,7 @@ function LoginCard() {
 
         /** Validate username input for sign-up */
         if (isSignUp) {
-            const usernameElement = formItems.namedItem('username') as HTMLInputElement;
+            const usernameElement = formItems.namedItem('name') as HTMLInputElement;
             if (!usernameElement) {
                 return;
             }

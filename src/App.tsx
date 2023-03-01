@@ -21,10 +21,23 @@ export default class App extends React.Component<AppProps, IAppState> {
 
         this.setTheme = this.setTheme.bind(this);
         this.onThemeChanged = this.onThemeChanged.bind(this);
+        this.onSystemThemeChangedToDark = this.onSystemThemeChangedToDark.bind(this);
     }
 
     componentDidMount(): void  {
         this.onThemeChanged();
+
+        if (typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined') {
+            /** Detects system theme change */
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.onSystemThemeChangedToDark);
+        }
+    }
+
+    componentWillUnmount(): void {
+        if (typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined') {
+            /** Removes system theme change listener */
+            window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.onSystemThemeChangedToDark);
+        }
     }
 
     setTheme(newTheme: EColorTheme) {
@@ -34,6 +47,19 @@ export default class App extends React.Component<AppProps, IAppState> {
             SaveTheme(newTheme);
             this.onThemeChanged();
         });
+    }
+
+    onSystemThemeChangedToDark(data: MediaQueryListEvent): void {
+        if (!data || typeof data !== 'object' || typeof data.matches !== 'boolean') {
+            return;
+        }
+
+        const oldTheme = this.state.theme;
+        const newTheme = data.matches ? EColorTheme.Dark : EColorTheme.Light;
+
+        if (oldTheme !== newTheme) {
+            this.setTheme(newTheme);
+        }
     }
 
     onThemeChanged() {
